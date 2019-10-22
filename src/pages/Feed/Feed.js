@@ -118,7 +118,8 @@ class Feed extends Component {
     let url = 'http://localhost:8081/feed/post';
     let method = 'POST';
     if (this.state.editPost) {
-      url = 'URL';
+      url = 'http://localhost:8081/feed/post/' + this.state.editPost._id;
+      method = 'PUT';
     }
     // not using application/json header for mixed text and files sent to REST server
     fetch(url, {
