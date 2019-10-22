@@ -36,7 +36,7 @@ class Feed extends Component {
 
     this.loadPosts();
   }
-
+  // Load Posts data from the server including imageUrl
   loadPosts = direction => {
     if (direction) {
       this.setState({ postsLoading: true, posts: [] });
@@ -59,7 +59,12 @@ class Feed extends Component {
       })
       .then(resData => {
         this.setState({
-          posts: resData.posts,
+          posts: resData.posts.map(post => {
+            return {
+              ...post,
+              imagePath: post.imageUrl
+            };
+          }),
           totalPosts: resData.totalItems,
           postsLoading: false
         });
