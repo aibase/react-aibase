@@ -27,6 +27,12 @@ const POST_FORM = {
     touched: false,
     validators: [required, length({ min: 1 })]
   },
+  interestTags: {
+    value: 'change',
+    valid: false,
+    touched: false,
+    validators: [required, length({ min: 3 })]
+  },
   image: {
     value: '',
     valid: false,
@@ -61,13 +67,18 @@ class FeedEdit extends Component {
           valid: true
         },
         previewText: {
-          ...prevState.postForm.title,
+          ...prevState.postForm.previewText,
           value: this.props.selectedPost.previewText,
           valid: true
         },
         postType: {
-          ...prevState.postForm.title,
+          ...prevState.postForm.postType,
           value: this.props.selectedPost.postType,
+          valid: true
+        },
+        interestTags: {
+          ...prevState.postForm.interestTags,
+          value: this.props.selectedPost.interestTags,
           valid: true
         },
         image: {
@@ -146,6 +157,7 @@ class FeedEdit extends Component {
       title: this.state.postForm.title.value,
       previewText: this.state.postForm.previewText.value,
       postType: this.state.postForm.postType.value,
+      interestTags: this.state.postForm.interestTags.value,
       image: this.state.postForm.image.value,
       content: this.state.postForm.content.value
     };
@@ -198,6 +210,16 @@ class FeedEdit extends Component {
               valid={this.state.postForm['postType'].valid}
               touched={this.state.postForm['postType'].touched}
               value={this.state.postForm['postType'].value}
+            />
+            <Input
+              id="interestTags"
+              label="Tags"
+              control="input"
+              onChange={this.postInputChangeHandler}
+              onBlur={this.inputBlurHandler.bind(this, 'interestTags')}
+              valid={this.state.postForm['interestTags'].valid}
+              touched={this.state.postForm['interestTags'].touched}
+              value={this.state.postForm['interestTags'].value}
             />
             <FilePicker
               id="image"

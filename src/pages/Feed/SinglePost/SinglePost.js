@@ -8,6 +8,7 @@ class SinglePost extends Component {
     title: '',
     previewText: '',
     postType: 'project',
+    interestTags: 'change',
     author: '',
     date: '',
     image: '',
@@ -33,6 +34,7 @@ class SinglePost extends Component {
           title: resData.post.title,
           previewText: resData.post.previewText,
           postType: resData.post.postType,
+          interestTags: resData.post.interestTags,
           author: resData.post.creator.name,
           image: 'http://localhost:8081/' + resData.post.imageUrl,
           date: new Date(resData.post.createdAt).toLocaleDateString('en-US'),
@@ -56,6 +58,7 @@ class SinglePost extends Component {
         </div>
         <p>{this.state.previewText}</p>
         <p>{this.state.postType}</p>
+        <p>{this.state.interestTags}</p>
         <p>{this.state.content}</p>
       </section>
     );

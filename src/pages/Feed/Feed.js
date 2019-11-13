@@ -173,6 +173,7 @@ class Feed extends Component {
     formData.append('title', postData.title);
     formData.append('previewText', postData.previewText);
     formData.append('postType', postData.postType);
+    formData.append('interestTags', postData.interestTags);
     formData.append('content', postData.content);
     formData.append('image', postData.image);
     let url = 'http://localhost:8081/feed/post';
@@ -202,6 +203,7 @@ class Feed extends Component {
           title: resData.post.title,
           previewText: resData.post.previewText,
           postType: resData.post.postType,
+          interestTags: resData.post.interestTags,
           content: resData.post.content,
           creator: resData.post.creator,
           createdAt: resData.post.createdAt
@@ -330,6 +332,7 @@ class Feed extends Component {
                   title={post.title}
                   previewText={post.previewText}
                   postType={post.postType}
+                  interestTags={post.interestTags}
                   image={post.imageUrl}
                   content={post.content}
                   onStartEdit={this.startEditPostHandler.bind(this, post._id)}
