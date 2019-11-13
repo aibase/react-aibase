@@ -172,6 +172,7 @@ class Feed extends Component {
     const formData = new FormData();
     formData.append('title', postData.title);
     formData.append('previewText', postData.previewText);
+    formData.append('postType', postData.postType);
     formData.append('content', postData.content);
     formData.append('image', postData.image);
     let url = 'http://localhost:8081/feed/post';
@@ -200,6 +201,7 @@ class Feed extends Component {
           _id: resData.post._id,
           title: resData.post.title,
           previewText: resData.post.previewText,
+          postType: resData.post.postType,
           content: resData.post.content,
           creator: resData.post.creator,
           createdAt: resData.post.createdAt
@@ -327,6 +329,7 @@ class Feed extends Component {
                   date={new Date(post.createdAt).toLocaleDateString('en-US')}
                   title={post.title}
                   previewText={post.previewText}
+                  postType={post.postType}
                   image={post.imageUrl}
                   content={post.content}
                   onStartEdit={this.startEditPostHandler.bind(this, post._id)}

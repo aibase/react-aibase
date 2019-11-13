@@ -21,6 +21,12 @@ const POST_FORM = {
     touched: false,
     validators: [required, length({ min: 5 })]
   },
+  postType: {
+    value: 'project',
+    valid: false,
+    touched: false,
+    validators: [required, length({ min: 1 })]
+  },
   image: {
     value: '',
     valid: false,
@@ -57,6 +63,11 @@ class FeedEdit extends Component {
         previewText: {
           ...prevState.postForm.title,
           value: this.props.selectedPost.previewText,
+          valid: true
+        },
+        postType: {
+          ...prevState.postForm.title,
+          value: this.props.selectedPost.postType,
           valid: true
         },
         image: {
@@ -134,6 +145,7 @@ class FeedEdit extends Component {
     const post = {
       title: this.state.postForm.title.value,
       previewText: this.state.postForm.previewText.value,
+      postType: this.state.postForm.postType.value,
       image: this.state.postForm.image.value,
       content: this.state.postForm.content.value
     };
@@ -176,6 +188,16 @@ class FeedEdit extends Component {
               valid={this.state.postForm['previewText'].valid}
               touched={this.state.postForm['previewText'].touched}
               value={this.state.postForm['previewText'].value}
+            />
+            <Input
+              id="postType"
+              label="Type"
+              control="input"
+              onChange={this.postInputChangeHandler}
+              onBlur={this.inputBlurHandler.bind(this, 'postType')}
+              valid={this.state.postForm['postType'].valid}
+              touched={this.state.postForm['postType'].touched}
+              value={this.state.postForm['postType'].value}
             />
             <FilePicker
               id="image"
