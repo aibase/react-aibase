@@ -6,6 +6,7 @@ import './SinglePost.css';
 class SinglePost extends Component {
   state = {
     title: '',
+    previewText: '',
     author: '',
     date: '',
     image: '',
@@ -28,6 +29,7 @@ class SinglePost extends Component {
       .then(resData => {
         this.setState({
           title: resData.post.title,
+          previewText: resData.post.previewText,
           author: resData.post.creator.name,
           image: 'http://localhost:8081/' + resData.post.imageUrl,
           date: new Date(resData.post.createdAt).toLocaleDateString('en-US'),
@@ -49,6 +51,7 @@ class SinglePost extends Component {
         <div className="single-post__image">
           <Image contain imageUrl={this.state.image} />
         </div>
+        <p>{this.state.previewText}</p>
         <p>{this.state.content}</p>
       </section>
     );

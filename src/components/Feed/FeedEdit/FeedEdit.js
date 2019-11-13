@@ -15,6 +15,12 @@ const POST_FORM = {
     touched: false,
     validators: [required, length({ min: 5 })]
   },
+  previewText: {
+    value: '',
+    valid: false,
+    touched: false,
+    validators: [required, length({ min: 5 })]
+  },
   image: {
     value: '',
     valid: false,
@@ -46,6 +52,11 @@ class FeedEdit extends Component {
         title: {
           ...prevState.postForm.title,
           value: this.props.selectedPost.title,
+          valid: true
+        },
+        previewText: {
+          ...prevState.postForm.title,
+          value: this.props.selectedPost.previewText,
           valid: true
         },
         image: {
@@ -122,6 +133,7 @@ class FeedEdit extends Component {
   acceptPostChangeHandler = () => {
     const post = {
       title: this.state.postForm.title.value,
+      previewText: this.state.postForm.previewText.value,
       image: this.state.postForm.image.value,
       content: this.state.postForm.content.value
     };
@@ -154,6 +166,16 @@ class FeedEdit extends Component {
               valid={this.state.postForm['title'].valid}
               touched={this.state.postForm['title'].touched}
               value={this.state.postForm['title'].value}
+            />
+            <Input
+              id="previewText"
+              label="Subtitle"
+              control="input"
+              onChange={this.postInputChangeHandler}
+              onBlur={this.inputBlurHandler.bind(this, 'previewText')}
+              valid={this.state.postForm['previewText'].valid}
+              touched={this.state.postForm['previewText'].touched}
+              value={this.state.postForm['previewText'].value}
             />
             <FilePicker
               id="image"

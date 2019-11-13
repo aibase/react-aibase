@@ -171,6 +171,7 @@ class Feed extends Component {
     // Set up data (with image!) - mixed content text & file
     const formData = new FormData();
     formData.append('title', postData.title);
+    formData.append('previewText', postData.previewText);
     formData.append('content', postData.content);
     formData.append('image', postData.image);
     let url = 'http://localhost:8081/feed/post';
@@ -198,6 +199,7 @@ class Feed extends Component {
         const post = {
           _id: resData.post._id,
           title: resData.post.title,
+          previewText: resData.post.previewText,
           content: resData.post.content,
           creator: resData.post.creator,
           createdAt: resData.post.createdAt
@@ -324,6 +326,7 @@ class Feed extends Component {
                   author={post.creator.name}
                   date={new Date(post.createdAt).toLocaleDateString('en-US')}
                   title={post.title}
+                  previewText={post.previewText}
                   image={post.imageUrl}
                   content={post.content}
                   onStartEdit={this.startEditPostHandler.bind(this, post._id)}
