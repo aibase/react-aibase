@@ -28,10 +28,16 @@ const POST_FORM = {
     validators: [required, length({ min: 1 })]
   },
   interestTags: {
-    value: 'change',
+    value: 'what.change',
     valid: false,
     touched: false,
     validators: [required, length({ min: 3 })]
+  },
+  sheets: {
+    value: `tag 1 : Social`,
+    valid: false,
+    touched: false,
+    validators: [required, length({ min: 5 })]
   },
   image: {
     value: '',
@@ -79,6 +85,11 @@ class FeedEdit extends Component {
         interestTags: {
           ...prevState.postForm.interestTags,
           value: this.props.selectedPost.interestTags,
+          valid: true
+        },
+        sheets: {
+          ...prevState.postForm.sheets,
+          value: this.props.selectedPost.sheets,
           valid: true
         },
         image: {
@@ -158,6 +169,7 @@ class FeedEdit extends Component {
       previewText: this.state.postForm.previewText.value,
       postType: this.state.postForm.postType.value,
       interestTags: this.state.postForm.interestTags.value,
+      sheets: this.state.postForm.sheets.value,
       image: this.state.postForm.image.value,
       content: this.state.postForm.content.value
     };
@@ -246,6 +258,17 @@ class FeedEdit extends Component {
               valid={this.state.postForm['content'].valid}
               touched={this.state.postForm['content'].touched}
               value={this.state.postForm['content'].value}
+            />
+            <Input
+              id="sheets"
+              label="Sheets"
+              control="textarea"
+              rows="10"
+              onChange={this.postInputChangeHandler}
+              onBlur={this.inputBlurHandler.bind(this, 'sheets')}
+              valid={this.state.postForm['sheets'].valid}
+              touched={this.state.postForm['sheets'].touched}
+              value={this.state.postForm['sheets'].value}
             />
           </form>
         </Modal>

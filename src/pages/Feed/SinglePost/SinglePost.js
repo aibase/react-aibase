@@ -7,8 +7,9 @@ class SinglePost extends Component {
   state = {
     title: '',
     previewText: '',
-    postType: 'project',
-    interestTags: 'change',
+    postType: '',
+    interestTags: '',
+    sheets: '',
     author: '',
     date: '',
     image: '',
@@ -35,6 +36,7 @@ class SinglePost extends Component {
           previewText: resData.post.previewText,
           postType: resData.post.postType,
           interestTags: resData.post.interestTags,
+          sheets: resData.post.sheets,
           author: resData.post.creator.name,
           image: 'http://localhost:8081/' + resData.post.imageUrl,
           date: new Date(resData.post.createdAt).toLocaleDateString('en-US'),
@@ -60,6 +62,7 @@ class SinglePost extends Component {
         <p>{this.state.postType}</p>
         <p>{this.state.interestTags}</p>
         <p>{this.state.content}</p>
+        <div>{this.state.sheets}</div>
       </section>
     );
   }
